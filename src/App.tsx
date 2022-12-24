@@ -22,7 +22,7 @@ const App = () => {
     setToShow(null);
     setHeightField(0);
     setWeightField(0);
-  }
+  };
 
   return (
     <div className={styles.main}>
@@ -46,6 +46,7 @@ const App = () => {
             placeholder="Digite a sua altura. Ex. 1.5 (em métros)"
             value={heightField > 0 ? heightField : ""}
             onChange={(e) => setHeightField(parseFloat(e.target.value))}
+            disabled={toShow ? true : false}
           />
 
           <input
@@ -53,9 +54,15 @@ const App = () => {
             placeholder="Digite o seu peso Ex. 70 (em kg)"
             value={weightField > 0 ? weightField : ""}
             onChange={(e) => setWeightField(parseFloat(e.target.value))}
+            disabled={toShow ? true : false}
           />
 
-          <button onClick={handleCalculateButton}>Calcular</button>
+          <button
+            onClick={handleCalculateButton}
+            disabled={toShow ? true : false}
+          >
+            Calcular
+          </button>
         </div>
         <div className={styles.rightSide}>
           {!toShow && (
@@ -69,7 +76,7 @@ const App = () => {
           {toShow && (
             <div className={styles.rightBig}>
               <div className={styles.rightArrow} onClick={handleBackButton}>
-                <img src={leftArrowImage} alt="" width={25}/>
+                <img src={leftArrowImage} alt="" width={25} />
               </div>
               <GridItem item={toShow} />
             </div>
